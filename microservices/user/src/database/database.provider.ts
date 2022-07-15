@@ -5,7 +5,7 @@ export const databaseProviders = [
     provide: 'DATABASE_CONNECTION',
     useFactory: (): Promise<typeof mongoose> =>
       mongoose.connect(
-        'mongodb://mongo:UjElc9HNGJN3yVpPRWLG@containers-us-west-79.railway.app:7816',
+        'mongodb://mongo:c9xUltC9IuCDokGIDMpW@containers-us-west-76.railway.app:5686',
       ),
   },
 ];
