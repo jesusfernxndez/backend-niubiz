@@ -1,0 +1,75 @@
+{
+    "_id": "ObjectId()",
+    "shoppingNumber": "string", // Autoincremental y no se debe repetir.
+    "products": [{
+        "idProduct": "ObjectId()",
+        "description": "String",
+        "url": "String",
+        "quantity": "Number",
+        "price": "Number"
+    }],
+    "status": {
+        "value": "number",
+        "description": "string"
+    },
+    "auditProperties" : {
+        "dateCreate": "Date",
+        "dateUpdate": "Date",
+        "userCreate": {
+            "idUser": "Type.ObjectId",
+            "email": "String"
+        },
+        "activeRecord": "Boolean"
+    }
+}
+
+
+CREACION CARRITO:[
+    {
+        "_id": "ObjectId()",
+        "shoppingNumber": "string", // Autoincremental y no se debe repetir.
+        "products": [],
+        "status": {
+            "value": "number",
+            "description": "string"
+        },
+        "auditProperties" : {
+            "dateCreate": "Date",
+            "dateUpdate": "Date",
+            "userCreate": {
+                "idUser": "Type.ObjectId",
+                "email": "String"
+            },
+            "activeRecord": "Boolean"
+        }
+    }
+]
+
+ACTUALIZACIÓN
+
+{
+    "_id": "ObjectId()",
+    "shoppingNumber": "string", // Autoincremental y no se debe repetir.
+    "products": [
+        {
+            "idProduct": "ObjectId()",
+            "description": "String",
+            "url": "String",
+            "quantity": "Number",
+            "price": "Number"
+        }
+    ],
+    "status": {
+        "value": "number",
+        "description": "string"
+    },
+    "auditProperties" : {
+        "dateCreate": "Date",
+        "dateUpdate": "Date",
+        "userCreate": {
+            "idUser": "Type.ObjectId",
+            "email": "String"
+        },
+        "activeRecord": "Boolean"
+    }
+}

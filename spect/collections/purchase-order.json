@@ -1,0 +1,26 @@
+{
+    "_id": "ObjectId()",
+    "orderNumber": "string",  // Autoincremental y no se debe repetir.
+    "shoppingNumber": "string",
+    "deliveryDate": "date",
+    "products": [{
+        "idProduct": "ObjectId()",
+        "description": "String",
+        "url": "String",
+        "quantity": "Number",
+        "price": "Number"
+    }],
+    "status": {
+        "value": "number",
+        "description": "string"
+    },
+    "auditProperties" : {
+        "dateCreate": "Date",
+        "dateUpdate": "Date",
+        "userCreate": {
+            "idUser": "Type.ObjectId",
+            "email": "String"
+        },
+        "activeRecord": "Boolean"
+    }
+}

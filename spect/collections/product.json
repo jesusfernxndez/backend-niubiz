@@ -1,0 +1,21 @@
+{
+    "_id": "ObjectId()",
+    "code": "string",
+    "name": "string",
+    "url": "string",
+    "description": "string",
+    "price": "number",
+    "status": {
+        "value": "number",
+        "description": "string"
+    },
+    "auditProperties" : {
+        "dateCreate": "Date",
+        "dateUpdate": "Date",
+        "userCreate": {
+            "idUser": "Type.ObjectId",
+            "email": "String"
+        },
+        "activeRecord": "Boolean"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "status_create": {
+        "value": 1,
+        "description": "Creación de tu carro de compra"
+    },
+    "status_update": {
+        "value": 2,
+        "description": "Actualizacion de productos"
+    },
+    "status_generate": {
+        "value": 3,
+        "description": "Se genero una orden de compra"
+    }
+}
