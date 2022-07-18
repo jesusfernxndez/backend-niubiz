@@ -1,7 +1,8 @@
-export interface UserRequestDTO {
-  email: string;
-  firstName: string;
-  lastName: string;
+export interface ProductRequestDTO {
+  name: string;
+  url: string;
+  description: string;
+  price: number;
   auditProperties: {
     userCreate: {
       idUser: string;
