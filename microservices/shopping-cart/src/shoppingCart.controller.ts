@@ -48,7 +48,8 @@ export class ShoppingCartController {
       products,
       status: {
         value: shoppingCart.status?.value ?? 1,
-        description: shoppingCart.status?.description ?? 'Active',
+        description:
+          shoppingCart.status?.description ?? 'Created shopping cart',
       },
       auditProperties: {
         dateCreate: new Date(),

@@ -32,7 +32,7 @@ export class ShoppingCartService {
         'auditProperties.userCreate.idUser':
           shoppingCart.auditProperties.userCreate.idUser,
         'auditProperties.activeRecord': true,
-        'status.value': 1,
+        'status.value': { $in: [1, 2] },
       })
       .exec();
     if (existUserShoppingCartActive) {
@@ -45,7 +45,7 @@ export class ShoppingCartService {
     const existUserShoppingCartActive = await this.model.findOne({
       'auditProperties.userCreate.idUser': idUser,
       'auditProperties.activeRecord': true,
-      'status.value': 1,
+      'status.value': { $in: [1, 2] },
     });
     if (!existUserShoppingCartActive) {
       throw new Error("User don't have a shopping cart active");
@@ -55,9 +55,12 @@ export class ShoppingCartService {
         {
           'auditProperties.userCreate.idUser': idUser,
           'auditProperties.activeRecord': true,
-          'status.value': 1,
+          'status.value': { $in: [1, 2] },
         },
-        { products },
+        {
+          products,
+          status: { value: 2, description: 'Updated shopping cart products' },
+        },
       )
       .exec();
   }
