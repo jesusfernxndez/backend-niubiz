@@ -3,7 +3,7 @@ export interface ProductRequestDTO {
   url: string;
   description: string;
   price: number;
-  auditProperties: {
+  auditProperties?: {
     userCreate: {
       idUser: string;
       email: string;
