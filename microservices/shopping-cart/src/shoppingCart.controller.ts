@@ -1,4 +1,15 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  ForbiddenException,
+  Get,
+  HttpCode,
+  HttpException,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
 import { ProductAxiosDTO } from './axios/ProductAxios.dto';
 import {
@@ -82,5 +93,17 @@ export class ShoppingCartController {
       ),
     );
     this.service.updateShoppingCart(idUser, products);
+  }
+
+  @Patch('/event_purchase_order/:idUser/:idShoppingCart')
+  async eventPurchaseOrderShoppingCart(
+    @Param('idUser') idUser: string,
+    @Param('idShoppingCart') idShoppingCart: string,
+  ): Promise<void> {
+    try {
+      this.service.eventPurchaseOrderShoppingCart(idUser, idShoppingCart);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 }

@@ -1,5 +1,5 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Inject, Injectable, ForbiddenException } from '@nestjs/common';
+import { Model, ObjectId } from 'mongoose';
 import {
   ProductShoppingCart,
   ShoppingCart,
@@ -17,13 +17,17 @@ export class ShoppingCartService {
     idUser: string,
     idShoppingCart: string,
   ): Promise<ShoppingCartModel> {
-    return this.model
-      .findOne({
-        _id: idShoppingCart,
-        'auditProperties.userCreate.idUser': idUser,
-        'auditProperties.activeRecord': true,
-      })
-      .exec();
+    const find = await this.model.findOne({
+      _id: idShoppingCart,
+      'auditProperties.activeRecord': true,
+    });
+    if (!find) {
+      throw new Error('Shopping cart not found');
+    }
+    if (find.auditProperties.userCreate.idUser.toString() !== idUser) {
+      throw new Error('Unauthorized');
+    }
+    return find;
   }
 
   async createShoppingCart(shoppingCart: ShoppingCart): Promise<void> {
@@ -63,5 +67,24 @@ export class ShoppingCartService {
         },
       )
       .exec();
+  }
+
+  async eventPurchaseOrderShoppingCart(idUser: string, idShoppingCart: string) {
+    const shoppingCart = await this.model.find({
+      'auditProperties.activeRecord': true,
+      'status.value': { $in: [1, 2] },
+    });
+    const find = shoppingCart.find(
+      (SC) =>
+        SC._id.toString() === idShoppingCart &&
+        SC.auditProperties.userCreate.idUser.toString() === idUser,
+    );
+    if (!find) {
+      throw new Error('Shopping cart not available for purchase order');
+    }
+    await this.model.updateOne(
+      { _id: idShoppingCart },
+      { status: { value: 3, description: 'Puchase order generated' } },
+    );
   }
 }
